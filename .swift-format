@@ -1,0 +1,12 @@
+﻿{
+  "lineBreakAroundMultilineExpressionChainComponents" : true,
+  "lineBreakBetweenDeclarationAttributes" : true,
+  "prioritizeKeepingFunctionOutputTogether" : true,
+  "reflowMultilineStringLiterals" : "always",
+  "spacesAroundRangeFormationOperators" : true,
+  "version" : 1,
+
+  "rules" : {
+    "AlwaysUseLowerCamelCase" : false,
+  }
+}
