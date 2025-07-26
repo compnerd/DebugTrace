@@ -7,11 +7,13 @@ let _: Package =
           products: [
             .executable(name: "dbgtrc", targets: ["DebugTrace"])
           ],
+          dependencies: [
+            .package(url: "https://github.com/compnerd/swift-platform-core.git", branch: "main"),
+          ],
           targets: [
-            .target(name: "WindowsCore"),
             .executableTarget(
               name: "DebugTrace",
               dependencies: [
-                .target(name: "WindowsCore")
+                .product(name: "WindowsCore", package: "swift-platform-core"),
               ]),
           ])
