@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  pull_request:
+    branches: ['**']
+
+jobs:
+  build-windows:
+    strategy:
+      matrix:
+        include:
+          - arch: x86_64
+            image: windows-latest
+          - arch: aarch64
+            image: windows-arm64
+
+    runs-on: ${{ matrix.image }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Swift
+        uses: compnerd/gha-setup-swift@main
+        with:
+          swift-version: development
+          swift-build: DEVELOPMENT-SNAPSHOT-2026-01-09-a
+
+      - name: Build
+        run: swift build -c release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbgtrc-${{ matrix.arch }}.exe
+          path: .build/release/dbgtrc.exe
